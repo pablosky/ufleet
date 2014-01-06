@@ -1,53 +1,72 @@
-<%= form_for(@vehicle) do |f| %>
-  <% if @vehicle.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@vehicle.errors.count, "error") %> prohibited this vehicle from being saved:</h2>
+<%= form_for @vehicle, :html => { :class => 'form-horizontal' } do |f| %>
 
-      <ul>
-      <% @vehicle.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <div class="control-group">
+    <%= f.label :patente, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :patente, :class => 'text_field' %>
     </div>
-  <% end %>
+  </div>
 
-  <div class="field">
-    <%= f.label :patente %><br>
-    <%= f.text_field :patente %>
+  <div class="control-group">
+    <%= f.label :marca, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :marca, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :marca %><br>
-    <%= f.text_field :marca %>
+
+  <div class="control-group">
+    <%= f.label :modelovehiculo, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :modelovehiculo, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :modelovehiculo %><br>
-    <%= f.text_field :modelovehiculo %>
+
+  <div class="control-group">
+    <%= f.label :aniovehiculo, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :aniovehiculo, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :aniovehiculo %><br>
-    <%= f.text_field :aniovehiculo %>
+
+  <div class="control-group">
+    <%= f.label :color, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :color, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :color %><br>
-    <%= f.text_field :color %>
+
+  <div class="control-group">
+    <%= f.label :nrchasis, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :nrchasis, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :nrchasis %><br>
-    <%= f.text_field :nrchasis %>
+
+  <div class="control-group">
+    <%= f.label :garantia, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :garantia, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :garantia %><br>
-    <%= f.text_field :garantia %>
+
+  <div class="control-group">
+    <%= f.label :descripcion, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :descripcion, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :descripcion %><br>
-    <%= f.text_area :descripcion %>
+
+  <div class="control-group">
+    <%= f.label :estado, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :estado, :class => 'text_field' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :estado %><br>
-    <%= f.text_field :estado %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                vehicles_path, :class => 'btn' %>
   </div>
 <% end %>
