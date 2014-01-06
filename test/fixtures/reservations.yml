@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  driver_id: 
+  vehicle_id: 
+  inicio: 2013-12-10 20:55:38
+  fin: 2013-12-10 20:55:38
+  descripcion: 
+
+two:
+  driver_id: 
+  vehicle_id: 
+  inicio: 2013-12-10 20:55:38
+  fin: 2013-12-10 20:55:38
+  descripcion: 

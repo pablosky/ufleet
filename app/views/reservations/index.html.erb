@@ -1,0 +1,933 @@
+
+
+
+
+
+<h3>Hoy <%= @date.strftime("%D") %></h3>
+
+
+
+   
+
+    <h4> <center><div class="btn-group">
+     <a href="/semanamenos" class="btn btn-large btn-primary"><i class="icon-arrow-left"></i></a>
+    
+     <a href="#" class="btn btn-large"><p>semana del <%= @startweek.strftime("%D")  %> hasta el <%= @endweek.strftime("%D")  %></p></a> 
+       
+    <a href="/semanamas" class="btn btn-large btn-primary"><i class="icon-arrow-right"></i></a>
+    </div>   </center></h4>
+    
+    
+    <br><br><br><div class="container">
+  <div class="row ">
+            <div class="span2"></div>
+            <div class="span1">Horas
+            <br><br>
+           <% for i in 0 ..15 %>
+            <%= @lunes[i].strftime("%R") %><br>
+            <% end %>
+            
+        </div>
+            <div class="span1">Lunes
+              <br><br>
+
+                <% for ind in 0..15 %>  
+                
+                   <a href="#ModalConsulta2lunes<%= ind %>" data-toggle="modal" class="storedate" id="<%= @lunes[ind].strftime("%Y%B%d%H%M") %>" name="<%= @lunes[ind]%>">Consultar</a><br>
+
+                  <div id="ModalConsulta2lunes<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Vehiculos disponibles</h3>
+                        </div>
+                      <div class="modal-body">
+
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th> Patente </th>
+                                      <th> Modelo </th>
+                                      <th> Marca </th>
+                                      <th> Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                                <tbody>
+                                <% @listavehiculoshora[ind].each_with_index do |vehicl , index| %>
+                                <tbody>
+                                <tr>   
+                               <td><%= @vehicles[index].patente %></td> 
+                              <td><%= @vehicles[index].modelovehiculo %></td>
+                              <td><%= @vehicles[index].marca %></td>
+                              <td><% if vehicl=="libre" %>
+
+                                <a href="#ModalConsultalunes<%= ind %>" class="storevehicle" data-toggle="modal" id="<%= @vehicles[index].id %>" data-dismiss="modal" name="<%= @vehicles[index].patente %> <%= @vehicles[index].modelovehiculo %>"><%= vehicl %></a> 
+
+                                  <% else %>
+                                  <%= vehicl %>
+                                  <% end %>
+                              </td>  
+
+                                </tbody><% end %>
+                      </table>
+                     </div>
+            </div> 
+
+
+                   
+
+                     <div id="ModalConsultalunes<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Choferes disponibles</h3>
+                        </div>
+                      <div class="modal-body">
+
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Nombre</th>
+                                      <th>Ci</th>
+                                      <th>Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                           
+                                <tbody> <% @listachoferhora[ind].each_with_index do |chofer , index| %> 
+                           <tr>  
+                           <td><%= @drivers[index].nombre %>  <%= @drivers[index].apellidopaterno %></td> 
+                           <td><%= @drivers[index].ci %></td>
+                           <td><% if chofer=="libre" %>
+
+                              <a href="#modalform" data-toggle="modal" class="storedriver" id="<%= @drivers[index].id %>"   data-dismiss="modal" name="<%= @drivers[index].nombre %>  <%= @drivers[index].apellidopaterno %>">  <%= chofer %></a>
+
+
+                                 
+                              <% else %>
+                                   <%= chofer %>
+                              <% end %>
+                            <td>
+                                
+                           <!-- aqui va un if de disponibilidad -->
+                           </tr><% end %>
+                       </tbody>
+                         </table>
+                     </div>
+            </div> 
+            
+
+
+
+
+
+
+
+
+
+            <% end %>
+            
+
+
+
+
+            </div> <!-- fin del if y del modal -->
+
+
+
+
+            <div class="span1">Martes
+            <br><br> <% for ind in 0..15 %>  
+                
+                   <a href="#ModalConsulta2martes<%= ind %>" data-toggle="modal">Consultar</a><br>
+
+                  <div id="ModalConsulta2martes<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Vehiculos disponibles</h3>
+                        </div>
+                      <div class="modal-body">
+
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Patente</th>
+                                      <th> Modelo</th>
+                                      <th> Marca </th>
+                                      <th> Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                                <tbody>
+                                <% @listavehiculoshoramartes[ind].each_with_index do |vehicl , index| %>
+                                <tbody>
+                                <tr>   
+                               <td><%= @vehicles[index].patente %></td> 
+                              <td><%= @vehicles[index].modelovehiculo %></td>
+                               <td><%= @vehicles[index].marca %></td>
+                              <td><% if vehicl=="libre" %>
+
+                                <a href="#ModalConsultamartes<%= ind %>" class="storevehicle" data-toggle="modal" id="<%= @vehicles[index].id %>" data-dismiss="modal" name="<%= @vehicles[index].patente %> <%= @vehicles[index].modelovehiculo %>"><%= vehicl %></a> 
+
+                                  <% else %>
+                                  <%= vehicl %>
+                                  <% end %>
+                              </td>  
+
+                                </tbody><% end %>
+                      </table>
+                     </div>
+            </div> 
+
+
+                   
+
+                     <div id="ModalConsultamartes<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Choferes disponibles</h3>
+                        </div>
+                      <div class="modal-body">
+
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Nombre</th>
+                                      <th>Ci</th>
+                                      <th>Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                           
+                                <tbody> <% @listachoferhoramartes[ind].each_with_index do |chofer , index| %> 
+                           <tr>  
+                           <td><%= @drivers[index].nombre %>  <%= @drivers[index].apellidopaterno %></td> 
+                           <td><%= @drivers[index].ci %></td>
+                           <td><% if chofer=="libre" %>
+
+                              <a href="#modalform" data-toggle="modal" class="storedriver" id="<%= @drivers[index].id %>"   data-dismiss="modal" name="<%= @drivers[index].nombre %>  <%= @drivers[index].apellidopaterno %>">  <%= chofer %></a>
+
+
+                                 
+                              <% else %>
+                                   <%= chofer %>
+                              <% end %>
+                            <td>
+                                
+                           <!-- aqui va un if de disponibilidad -->
+                           </tr><% end %>
+                       </tbody>
+                         </table>
+                     </div>
+            </div> 
+            
+
+
+
+
+
+
+
+
+
+            <% end %>
+            
+
+
+            
+            </div>
+            <div class="span1">Miercoles
+            
+                <br><br>
+                 <% for ind in 0..15 %>  
+                
+                   <a href="#ModalConsulta2miercoles<%= ind %>" data-toggle="modal">Consultar</a><br>
+
+                  <div id="ModalConsulta2miercoles<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Vehiculos disponibles</h3>
+                        </div>
+                      <div class="modal-body">
+
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Patente</th>
+                                      <th> Modelo</th>
+                                      <th> Marca </th>
+                                      <th> Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                                <tbody>
+                                <% @listavehiculoshoramiercoles[ind].each_with_index do |vehicl , index| %>
+                                <tbody>
+                                <tr>   
+                               <td><%= @vehicles[index].patente %></td> 
+                              <td><%= @vehicles[index].modelovehiculo %></td>
+                               <td><%= @vehicles[index].marca %></td>
+                              <td><% if vehicl=="libre" %>
+
+                                <a href="#ModalConsultamiercoles<%= ind %>" class="storevehicle" data-toggle="modal" id="<%= @vehicles[index].id %>" data-dismiss="modal" name="<%= @vehicles[index].patente %> <%= @vehicles[index].modelovehiculo %>"><%= vehicl %></a> 
+
+                                  <% else %>
+                                  <%= vehicl %>
+                                  <% end %>
+                              </td>  
+
+                                </tbody><% end %>
+                      </table>
+                     </div>
+            </div> 
+
+
+                   
+
+                     <div id="ModalConsultamiercoles<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Choferes disponibles</h3>
+                        </div>
+                      <div class="modal-body">
+
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Nombre</th>
+                                      <th>Ci</th>
+                                      <th>Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                           
+                                <tbody> <% @listachoferhoramiercoles[ind].each_with_index do |chofer , index| %> 
+                           <tr>  
+                           <td><%= @drivers[index].nombre %>  <%= @drivers[index].apellidopaterno %></td> 
+                           <td><%= @drivers[index].ci %></td>
+                           <td><% if chofer=="libre" %>
+
+                              <a href="#modalform" data-toggle="modal" class="storedriver" id="<%= @drivers[index].id %>"   data-dismiss="modal" name="<%= @drivers[index].nombre %>  <%= @drivers[index].apellidopaterno %>">  <%= chofer %></a>
+
+
+                                 
+                              <% else %>
+                                   <%= chofer %>
+                              <% end %>
+                            <td>
+                                
+                           <!-- aqui va un if de disponibilidad -->
+                           </tr><% end %>
+                       </tbody>
+                         </table>
+                     </div>
+            </div> 
+            
+
+
+
+
+
+
+
+
+
+            <% end %>
+            
+
+
+            
+            </div>
+            <div class="span1">Jueves
+            
+            <br><br>
+                 <% for ind in 0..15 %>  
+                
+                   <a href="#ModalConsulta2jueves<%= ind %>" data-toggle="modal">Consultar</a><br>
+
+                  <div id="ModalConsulta2jueves<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Vehiculos disponibles</h3>
+                        </div>
+                      <div class="modal-body">
+
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Patente</th>
+                                      <th> Modelo</th>
+                                      <th> Marca </th>
+                                      <th> Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                                <tbody>
+                                <% @listavehiculoshorajueves[ind].each_with_index do |vehicl , index| %>
+                                <tbody>
+                                <tr>   
+                               <td><%= @vehicles[index].patente %></td> 
+                              <td><%= @vehicles[index].modelovehiculo %></td>
+                               <td><%= @vehicles[index].marca %></td>
+                              <td><% if vehicl=="libre" %>
+
+                                <a href="#ModalConsultajueves<%= ind %>" class="storevehicle" data-toggle="modal" id="<%= @vehicles[index].id %>" data-dismiss="modal" name="<%= @vehicles[index].patente %> <%= @vehicles[index].modelovehiculo %>"><%= vehicl %></a> 
+
+                                  <% else %>
+                                  <%= vehicl %>
+                                  <% end %>
+                              </td>  
+
+                                </tbody><% end %>
+                      </table>
+                     </div>
+            </div> 
+
+
+                   
+
+                     <div id="ModalConsultajueves<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Choferes disponibles</h3>
+                        </div>
+                      <div class="modal-body">
+
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Nombre</th>
+                                      <th>Ci</th>
+                                      <th>Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                           
+                                <tbody> <% @listachoferhorajueves[ind].each_with_index do |chofer , index| %> 
+                           <tr>  
+                           <td><%= @drivers[index].nombre %>  <%= @drivers[index].apellidopaterno %></td> 
+                           <td><%= @drivers[index].ci %></td>
+                           <td><% if chofer=="libre" %>
+
+                              <a href="#modalform" data-toggle="modal" class="storedriver" id="<%= @drivers[index].id %>"   data-dismiss="modal" name="<%= @drivers[index].nombre %>  <%= @drivers[index].apellidopaterno %>">  <%= chofer %></a>
+
+
+                                 
+                              <% else %>
+                                   <%= chofer %>
+                              <% end %>
+                            <td>
+                                
+                           <!-- aqui va un if de disponibilidad -->
+                           </tr><% end %>
+                       </tbody>
+                         </table>
+                     </div>
+            </div> 
+            
+
+
+
+
+
+
+
+
+
+            <% end %>
+            
+
+
+            </div>
+            <div class="span1">Viernes
+            <br><br>
+               
+                 <% for ind in 0..15 %>  
+                
+                   <a href="#ModalConsulta2viernes<%= ind %>" data-toggle="modal">Consultar</a><br>
+
+                  <div id="ModalConsulta2viernes<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Vehiculos disponibles</h3>
+                        </div>
+                      <div class="modal-body">
+
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Patente</th>
+                                      <th> Modelo</th>
+                                      <th> Marca </th>
+                                      <th> Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                                <tbody>
+                                <% @listavehiculoshoraviernes[ind].each_with_index do |vehicl , index| %>
+                                <tbody>
+                                <tr>   
+                               <td><%= @vehicles[index].patente %></td> 
+                              <td><%= @vehicles[index].modelovehiculo %></td>
+                               <td><%= @vehicles[index].marca %></td>
+                              <td><% if vehicl=="libre" %>
+
+                                <a href="#ModalConsultaviernes<%= ind %>" class="storevehicle" data-toggle="modal" id="<%= @vehicles[index].id %>" data-dismiss="modal" name="<%= @vehicles[index].patente %> <%= @vehicles[index].modelovehiculo %>"><%= vehicl %></a> 
+
+                                  <% else %>
+                                  <%= vehicl %>
+                                  <% end %>
+                              </td>  
+
+                                </tbody><% end %>
+                      </table>
+                     </div>
+            </div> 
+
+
+                   
+
+                     <div id="ModalConsultaviernes<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Choferes disponibles</h3>
+                        </div>
+                      <div class="modal-body">
+
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Nombre</th>
+                                      <th>Ci</th>
+                                      <th>Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                           
+                                <tbody> <% @listachoferhoraviernes[ind].each_with_index do |chofer , index| %> 
+                           <tr>  
+                           <td><%= @drivers[index].nombre %>  <%= @drivers[index].apellidopaterno %></td> 
+                           <td><%= @drivers[index].ci %></td>
+                           <td><% if chofer=="libre" %>
+
+                              <a href="#modalform" data-toggle="modal" class="storedriver" id="<%= @drivers[index].id %>"   data-dismiss="modal" name="<%= @drivers[index].nombre %>  <%= @drivers[index].apellidopaterno %>">  <%= chofer %></a>
+
+
+                                 
+                              <% else %>
+                                   <%= chofer %>
+                              <% end %>
+                            <td>
+                                
+                           <!-- aqui va un if de disponibilidad -->
+                           </tr><% end %>
+                       </tbody>
+                         </table>
+                     </div>
+            </div> 
+            
+
+
+
+
+
+
+
+
+
+            <% end %>
+            
+
+   </div>
+            
+            <div class="span1">Sabado
+            
+            <br><br>
+               <% for ind in 0..15 %>  
+                
+                   <a href="#ModalConsulta2sabado<%= ind %>" data-toggle="modal">Consultar</a><br>
+
+                  <div id="ModalConsulta2sabado<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Vehiculos disponibles</h3>
+                        </div>
+                      <div class="modal-body">
+
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Patente</th>
+                                      <th> Modelo</th>
+                                      <th> Marca </th>
+                                      <th> Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                                <tbody>
+                                <% @listavehiculoshorasabado[ind].each_with_index do |vehicl , index| %>
+                                <tbody>
+                                <tr>   
+                               <td><%= @vehicles[index].patente %></td> 
+                              <td><%= @vehicles[index].modelovehiculo %></td>
+                               <td><%= @vehicles[index].marca %></td>
+                              <td><% if vehicl=="libre" %>
+
+                                <a href="#ModalConsultasabado<%= ind %>" class="storevehicle" data-toggle="modal" id="<%= @vehicles[index].id %>" data-dismiss="modal" name="<%= @vehicles[index].patente %> <%= @vehicles[index].modelovehiculo %>"><%= vehicl %></a> 
+
+                                  <% else %>
+                                  <%= vehicl %>
+                                  <% end %>
+                              </td>  
+
+                                </tbody><% end %>
+                      </table>
+                     </div>
+            </div> 
+
+
+                   
+
+                     <div id="ModalConsultasabado<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Choferes disponibles</h3>
+                        </div>
+                      <div class="modal-body">
+
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Nombre</th>
+                                      <th>Ci</th>
+                                      <th>Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                           
+                                <tbody> <% @listachoferhorasabado[ind].each_with_index do |chofer , index| %> 
+                           <tr>  
+                           <td><%= @drivers[index].nombre %>  <%= @drivers[index].apellidopaterno %></td> 
+                           <td><%= @drivers[index].ci %></td>
+                           <td><% if chofer=="libre" %>
+
+                              <a href="#modalform" data-toggle="modal" class="storedriver" id="<%= @drivers[index].id %>"   data-dismiss="modal" name="<%= @drivers[index].nombre %>  <%= @drivers[index].apellidopaterno %>">  <%= chofer %></a>
+
+
+                                 
+                              <% else %>
+                                   <%= chofer %>
+                              <% end %>
+                            <td>
+                                
+                           <!-- aqui va un if de disponibilidad -->
+                           </tr><% end %>
+                       </tbody>
+                         </table>
+                     </div>
+            </div> 
+            
+
+
+
+
+
+
+
+
+
+            <% end %>
+            
+
+</div>
+            <div class="span1">Domingo
+            <br><br>
+                <% for ind in 0..15 %>  
+                
+                   <a href="#ModalConsulta2domingo<%= ind %>" data-toggle="modal">Consultar</a><br>
+
+                  <div id="ModalConsulta2domingo<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Vehiculos disponibles</h3>
+                        </div>
+                      <div class="modal-body">
+
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Patente</th>
+                                      <th> Modelo</th>
+                                      <th> Marca </th>
+                                      <th> Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                                <tbody>
+                                <% @listavehiculoshoradomingo[ind].each_with_index do |vehicl , index| %>
+                                <tbody>
+                                <tr>   
+                               <td><%= @vehicles[index].patente %></td> 
+                              <td><%= @vehicles[index].modelovehiculo %></td>
+                               <td><%= @vehicles[index].marca %></td>
+                              <td><% if vehicl=="libre" %>
+
+                                <a href="#ModalConsultadomingo<%= ind %>" class="storevehicle" data-toggle="modal" id="<%= @vehicles[index].id %>" data-dismiss="modal" name="<%= @vehicles[index].patente %> <%= @vehicles[index].modelovehiculo %>"><%= vehicl %></a> 
+
+                                  <% else %>
+                                  <%= vehicl %>
+                                  <% end %>
+                              </td>  
+
+                                </tbody><% end %>
+                      </table>
+                     </div>
+            </div> 
+
+
+                   
+
+                     <div id="ModalConsultadomingo<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Choferes disponibles</h3>
+                        </div>
+                      <div class="modal-body">
+
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Nombre</th>
+                                      <th>Ci</th>
+                                      <th>Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                           
+                                <tbody> <% @listachoferhoradomingo[ind].each_with_index do |chofer , index| %> 
+                           <tr>  
+                           <td><%= @drivers[index].nombre %>  <%= @drivers[index].apellidopaterno %></td> 
+                           <td><%= @drivers[index].ci %></td>
+                           <td><% if chofer=="libre" %>
+
+                              <a href="#modalform" data-toggle="modal" class="storedriver" id="<%= @drivers[index].id %>"   data-dismiss="modal" name="<%= @drivers[index].nombre %>  <%= @drivers[index].apellidopaterno %>">  <%= chofer %></a>
+
+
+                                 
+                              <% else %>
+                                   <%= chofer %>
+                              <% end %>
+                            <td>
+                                
+                           <!-- aqui va un if de disponibilidad -->
+                           </tr><% end %>
+                       </tbody>
+                         </table>
+                     </div>
+            </div> 
+            
+
+
+
+
+
+
+
+
+
+            <% end %>
+            
+
+
+            
+            </div>
+  <div class="span2"></div>
+  
+     
+</div>
+
+
+ </div>
+
+<br><br><br>
+<center>
+
+<div class="btn-group">
+<a href="/horamas0" class="btn"> 00:00 </a><a href="/horamas1" class="btn" > 04:00 </a> <a href="/horamas2" class="btn"> 08:00 </a>
+
+<a href="/horamas3" class="btn"> 12:00 </a>
+
+<a href="/horamas4" class="btn"> 16:00 </a>
+
+<a href="/horamas5" class="btn"> 20:00 </a>
+
+</div>
+</center>
+<br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>Listing reservations</h1>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Driver</th>
+      <th>Vehicle</th>
+      <th>Inicio</th>
+      <th>Fin</th>
+      <th>Descripcion</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+
+        <td><%= reservation.driver.nombre %>  <%= reservation.driver.apellidopaterno %></td>
+        <td><%= reservation.vehicle.id %></td>
+        <td><%= reservation.inicio %></td>
+        <td><%= reservation.fin %></td>
+        <td><%= reservation.descripcion %></td>
+        <td><%= link_to 'Show', reservation %></td>
+        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
+        <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reservation', new_reservation_path %>
+
+<br>
+
+<br>
+
+<!-- modal del form de rellenado -->
+
+
+
+
+
+
+                          
+
+
+
+
+
+
+ <div id="modalform" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 100%;margin-left:-50%;">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                          <h3 id="myModalLabel">Ingreso de Reserva</h3>
+                        </div>
+                      <div class="modal-body" style="height:100%;">
+
+                          <%= form_for @reservation, :html => {  :id =>"formascript"} do |f| %>
+
+                                <div class="control-group">
+                                   <%= f.label "Conductor" %>
+                                  <input type="text"  id = 'conductor2' disabled ></input> 
+                                  <div class="controls">
+                                    <%= f.text_field :driver_id, :class => 'text_field' ,:id=> 'conductor' ,:type=>"hidden"  %>
+                                  </div>
+                                </div>
+
+                                <div class="control-group">
+                                  <%= f.label "Vehiculo" %> <input type="text"  id = 'vehiculo2' disabled></input> 
+                                  <div id="vehiculoprint"></div>
+                                  <div class="controls">
+                                    <%= f.text_field :vehicle_id, :class => 'text_field' ,:id=> 'vehiculo' ,:type=>"hidden" %>
+                                  </div>
+                                </div>
+
+                                <div class="control-group">
+                                  <%= f.label :inicio, :class => 'control-label' %>
+                                  <input type="text"  id = 'fechaf2' disabled ></input> 
+                                  <div class="controls">
+                                    <%= f.datetime_select :inicio, :class => 'text_field' , :id=>'fechaf' %>
+                                  </div>
+                                </div>
+
+                                <div class="control-group">
+                                  <%= f.label :fin, :class => 'control-label' %>
+                                  <div class="controls">
+                                    <%= f.datetime_select :fin, :class => 'text_field' %>
+                                  </div>
+                                </div>
+
+                                <div class="control-group">
+                                  <%= f.label :descripcion, :class => 'control-label' %>
+                                  <div class="controls">
+                                    <%= f.text_area :descripcion, :class => 'text_field' %>
+                                  </div>
+                                </div>
+
+
+                                <div class="form-actions">
+                                  <%= f.submit nil, :class => 'btn btn-primary' %>
+                                  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                                              reservations_path, :class => 'btn' %>
+                                </div>
+                        <% end %>
+
+                            
+                     </div>
+            </div> 
+
+
+
+<script>
+
+var driver;
+var vehicle;
+
+
+
+$(".storevehicle").click(function() {
+
+       document.getElementById("vehiculo").value = $(this).attr("id");
+       
+       document.getElementById("vehiculo2").value = $(this).attr("name");
+      
+
+      
+   });
+
+
+$(".storedriver").click(function() {
+
+      document.getElementById("conductor").value = $(this).attr("id");
+      document.getElementById("conductor2").value = $(this).attr("name");
+     
+     
+   });
+
+
+$(".storedate").click(function() {
+
+      document.getElementById("fechaf").value = $(this).attr("id");
+      document.getElementById("fechaf2").value = $(this).attr("name");
+     
+     
+   });
+
+
+
+
+</script>
+  

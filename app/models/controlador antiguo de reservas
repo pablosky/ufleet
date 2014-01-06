@@ -1,0 +1,182 @@
+class ReservationsController < ApplicationController
+  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+
+  # GET /reservations
+  # GET /reservations.json
+  def search
+
+   #@reservations = Reservation.new 
+   @user= User.new 
+   
+   #t = Time.zone.parse("2013-12-12 16:35:00")
+   #@reservations = Reservation.where(:inicio =>t)
+
+   #ahora con between
+
+   iniciof = Time.zone.parse("2012-12-12 16:35:00")
+   finf =  Time.zone.parse("2014-12-12 16:35:00")
+
+   #iniciof = "2012-12-12 16:35:00"
+   #finf =  "2014-12-12 16:35:00"
+
+   @reservations = Reservation.where(:inicio =>  iniciof .. finf)
+
+  end
+
+  def index
+
+   if params[:search]
+
+        @reservations = Reservation.find_by_inicio(params[:search]).order("created_at DESC")
+   else
+
+        @reservations = Reservation.all.order('created_at DESC')
+    end
+    @user = User.new #para carga del login
+    @date = Date.today
+
+    @startweek= Date.new
+    @endweek = Date.new
+    @DIA = @date.strftime("%A")
+
+   
+   #algoritmo de calculo de semana
+
+    if @date.strftime("%A") == "Monday"
+
+       @startweek = @date
+       @endweek = @date + 6.days
+
+    elsif @date.strftime("%A") == "Tuesday"
+            
+       @startweek = @date - 1.days
+       @endweek = @date + 5.days
+       
+    elsif @date.strftime("%A") == "Wednesday"
+      
+       @startweek = @date - 2.days
+       @endweek = @date + 4.days
+
+    elsif @date.strftime("%A") == "Thursday"
+      
+       @startweek = @date - 3.days
+       @endweek = @date + 3.days
+
+    elsif @date.strftime("%A") == "Friday"   
+
+      @startweek = @date - 4.days
+      @endweek = @date + 2.days
+
+    elsif @date.strftime("%A") == "Saturday"
+
+        @startweek = @date - 5.days
+        @endweek = @date + 1.days
+    
+    elsif @date.strftime("%A") == "Sunday"    
+      
+      @startweek = @date - 6.days
+      @endweek = @date 
+
+
+    end
+  #fin del inteligent de semanas
+
+  @vehicles = Vehicle.all #todos los vehiculos para prueba
+  @drivers = Driver.all # todos los chofer solo para uso de prueba
+
+
+#busqueda
+
+  #buscar desde @startweek hasta @endweek todas las reservas
+  
+  @reservations = Reservation.where(:inicio =>  @startweek.. @endweek)
+
+#todas las horas y fechas matrix
+
+
+
+  @lunes =[]
+  
+  @lunes<< @startweek 
+
+  i= 0
+
+  until i > 15 do
+    
+    @lunes << @startweek.step(15 * 60)
+    i = i+1
+  end
+
+
+  end
+
+  # GET /reservations/1
+  # GET /reservations/1.json
+  def show
+    @user= User.new
+  end
+
+  # GET /reservations/new
+  def new
+    @reservation = Reservation.new
+    @user= User.new
+  end
+
+  # GET /reservations/1/edit
+  def edit
+
+    @user= User.new
+  end
+
+  # POST /reservations
+  # POST /reservations.json
+  def create
+    @user= User.new
+    @reservation = Reservation.new(reservation_params)
+
+    respond_to do |format|
+      if @reservation.save
+        format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @reservation }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @reservation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /reservations/1
+  # PATCH/PUT /reservations/1.json
+  def update
+    respond_to do |format|
+      if @reservation.update(reservation_params)
+        format.html { redirect_to @reservation, notice: 'Reservation was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @reservation.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /reservations/1
+  # DELETE /reservations/1.json
+  def destroy
+    @reservation.destroy
+    respond_to do |format|
+      format.html { redirect_to reservations_url }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_reservation
+      @reservation = Reservation.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def reservation_params
+      params.require(:reservation).permit(:driver_id, :vehicle_id, :inicio, :fin, :descripcion)
+    end
+end

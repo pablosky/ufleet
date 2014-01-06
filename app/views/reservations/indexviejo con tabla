@@ -1,0 +1,414 @@
+semana del <%= @startweek  %> hasta el <%= @endweek  %>
+
+   <center> <h1><a href="#"><span class="glyphicon glyphicon-arrow-left"></a></span> <a href="#"><p><%= @date%></p></a><a href="#"><span class="glyphicon glyphicon-arrow-right"></span></a></h1> </center>    
+    
+    <br><br<<br>
+  <div class="row">
+      <center>
+            <div class="span3">Horas
+            <br><br>
+            00:00<br>
+            00:15<br>
+            00:30<br>
+            00:45<br>
+            01:00<br>
+            01:15<br>
+            01:30<br>
+            01:45<br>
+            02:00<br>
+            02:15<br>
+            02:30<br>
+            02:45<br>
+            03:00<br>
+            03:15<br>
+            03:30<br>
+            03:45<br>
+            
+            </div>
+            <div class="span1">Lunes
+                <br><br>
+                <a href="#ModalConsulta"  data-toggle="modal">Consultar</a><br>
+
+                <div id="ModalConsulta" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabel">Vehiculos disponibles</h3>
+                      </div>
+                      <div class="modal-body">
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Patente</th>
+                                      <th> Modelo</th>
+                                      <th> Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                           <% @vehicles.each do |vehicle| %>
+                                <tbody>
+                                <tr>   
+                           <td><%= vehicle.patente %></td> 
+                           <td><%= vehicle.modelovehiculo %></td>
+
+                           <!-- aqui va un if de disponibilidad -->
+                           <td><a href="#ModalConsulta2"  data-toggle="modal">Consultar</a></td>
+
+                         </tr>
+                       </tbody><% end %>
+                         </table>
+                          
+                
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                        <button class="btn btn-primary">Siguiente</button>
+                      </div>
+                    </div>       
+                
+               <!--  fin del modlconsulta -->
+        
+                <div id="ModalConsulta2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabel">Choferes disponibles</h3>
+                      </div>
+                      <div class="modal-body">
+                            <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Nombre</th>
+                                      <th>Apellido</th>
+                                      <th> CI </th>
+                                      <th> Disponibilidad<th>
+                                    <tr>
+                                   </thead> 
+                                 <% @drivers.each do |driver| %>
+                                <tbody>
+                                <tr>   
+                           <td><%= driver.nombre %></td> 
+                           <td><%= driver.apellidopaterno %></td>
+                           <td><%= driver.ci%></td>
+                           <td> otro modal <td>
+                           <!-- aqui va un if de disponibilidad -->
+                          
+
+                         </tr>
+                       </tbody><% end %>
+                         </table>
+                          
+                
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                        <button class="btn btn-primary">Siguiente</button>
+                      </div>
+                    </div>       
+
+
+
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+            
+            </div>
+            <div class="span1">Martes
+            <br><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+            
+            </div>
+            <div class="span1">Miercoles
+            
+                <br><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+            
+            </div>
+            <div class="span1">Jueves
+            
+            <br><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+            </div>
+            <div class="span1">Viernes
+            <br><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+            </div>
+            <div class="span1">Sabado
+            
+            <br><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br></div>
+            <div class="span1">Domingo
+            <br><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+                <a href="#" >Consultar</a><br>
+            
+            </div>
+
+  
+      </center>
+</div>
+
+
+
+
+<h1>Listing reservations</h1>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Driver</th>
+      <th>Vehicle</th>
+      <th>Inicio</th>
+      <th>Fin</th>
+      <th>Descripcion</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+
+        <td><%= reservation.driver.nombre %>  <%= reservation.driver.apellidopaterno %></td>
+        <td><%= reservation.vehicle.id %></td>
+        <td><%= reservation.inicio %></td>
+        <td><%= reservation.fin %></td>
+        <td><%= reservation.descripcion %></td>
+        <td><%= link_to 'Show', reservation %></td>
+        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
+        <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reservation', new_reservation_path %>
+
+<br>
+<div class="row-fluid">
+ <div class="span3"></div>
+ <div class="span1">
+ <h3>lunes</h3>
+  <% @lunes.each do |lune| %>
+
+  <%= lune %><br>
+
+  <% end %>
+</div>
+
+<div class="span1">
+ <h3>Martes</h3>
+  <% @martes.each do |martes| %>
+
+  <%= martes %><br>
+
+  <% end %>
+</div>
+
+<div class="span1">
+ <h3>Miercoles</h3>
+  <% @miercoles.each do |miercoles| %>
+
+  <%= miercoles %><br>
+
+  <% end %>
+</div>
+
+<div class="span1">
+ <h3>Jueves</h3>
+  <% @jueves.each do |jueves| %>
+
+  <%= jueves %><br>
+
+  <% end %>
+</div>
+
+<div class="span1">
+ <h3>Viernes</h3>
+  <% @viernes.each do |viernes| %>
+
+  <%= viernes %><br>
+
+  <% end %>
+</div>
+
+<div class="span1">
+ <h3>Sabado</h3>
+  <% @sabado.each do |sabado| %>
+
+  <%= sabado %><br>
+
+  <% end %>
+</div>
+
+<div class="span1">
+ <h3>Domingo</h3>
+  <% @domingo.each do |domingo| %>
+
+  <%= domingo %><br>
+
+  <% end %>
+</div>
+
+
+
+</div><!-- fin del row -->
+
+<br>
+<br>
+<br><h1>listachoferhora antiguo</h1><br>
+
+<table class="table table-striped">
+  <thead>
+   
+    <tr>
+      <% @drivers.each do |driver| %>
+      <th><%= driver.nombre %>  <%= driver.apellidopaterno %></th>
+    <% end %>
+    </tr>  
+  </thead>
+  
+  <tbody>
+  <% @listachoferhora.each_with_index do |lista , index| %>  <tr>
+  <% lista.each do |chofer| %> 
+      <td> <%= chofer %></td> 
+      <% end %>
+    </tr> 
+  <% end %>    
+  </tbody>
+</table>
+
+<br><h1>listachoferhora</h1><br>
+
+<% @listachoferhora.each do |lista| %>
+
+  <%=  %><br>
+  
+       <%= lista %><br> 
+ 
+  
+<% end %>
+
+
+<h1> reservas lunes</h1>
+
+<% @reservaschoferlunes.each do |reservasa| %>
+
+  <% reservasa.each do |reserv| %>
+
+
+  <%= reserv.id %>  - <%= reserv.driver.nombre %>
+
+  <% end %>
+
+  <br>
+<% end %>
+
+
+
+
+
+  

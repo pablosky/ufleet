@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  cargo: MyString
+  ci: MyString
+  nombre: MyString
+  apellidopaterno: MyString
+  apellidomaterno: MyString
+  celular: 1
+  estadochofer: MyString
+
+two:
+  cargo: MyString
+  ci: MyString
+  nombre: MyString
+  apellidopaterno: MyString
+  apellidomaterno: MyString
+  celular: 1
+  estadochofer: MyString

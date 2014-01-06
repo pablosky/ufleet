@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  patente: MyString
+  marca: MyString
+  modelovehiculo: MyString
+  aniovehiculo: MyString
+  color: MyString
+  nrchasis: MyString
+  garantia: MyString
+  descripcion: MyText
+  estado: MyString
+
+two:
+  patente: MyString
+  marca: MyString
+  modelovehiculo: MyString
+  aniovehiculo: MyString
+  color: MyString
+  nrchasis: MyString
+  garantia: MyString
+  descripcion: MyText
+  estado: MyString

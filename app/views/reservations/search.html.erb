@@ -1,0 +1,38 @@
+<%= form_tag(reservations_path, :method => "get", id: "search-form") do %>
+<%= datetime_select :search, params[:search], placeholder: "Search Reservations" %>
+<%= submit_tag "Search" %>
+<% end %>
+
+<h1>Listing reservations</h1>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Driver</th>
+      <th>Vehicle</th>
+      <th>Inicio</th>
+      <th>Fin</th>
+      <th>Descripcion</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+
+        <td><%= reservation.driver.nombre %></td>
+        <td><%= reservation.vehicle %></td>
+        <td><%= reservation.inicio %></td>
+        <td><%= reservation.fin %></td>
+        <td><%= reservation.descripcion %></td>
+        <td><%= link_to 'Show', reservation %></td>
+        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
+        <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

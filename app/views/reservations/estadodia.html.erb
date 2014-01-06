@@ -1,0 +1,69 @@
+
+
+
+
+<div class="container-fluid">
+
+
+<form action ="/ir">
+<p>Elegir dia: 
+<div class="input-prepend">
+  <input type="text" id="datepicker" name="fechat"> <input class="btn" type="submit" value="Ir"></div></p> 
+</form>
+
+<h1>Reservas del día <%= @dia.strftime("%D") %></h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Driver</th>
+      <th>Vehicle</th>
+      <th>Fecha Inicio</th>
+      <th>Hora Inicio</th>
+      <th>Fecha Fin</th>
+      <th>Hora Fin</th>
+      <th>Descripcion</th>
+      <th>Estado</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reservations.each do |reservation| %>
+      <tr>
+
+        <td><%= reservation.driver.nombre %>  <%= reservation.driver.apellidopaterno %></td>
+        <td><%= reservation.vehicle.id %></td>
+        <td><%= reservation.inicio.strftime("%D") %></td>
+        <td>  <%= reservation.inicio.strftime("%R") %></td>
+        <td><%= reservation.fin.strftime("%D") %>  </td>
+        <td> <%= reservation.fin.strftime("%R") %></td>
+        <td><%= reservation.descripcion %></td>
+        <td><%= reservation.estado %></td>
+        <td><%= link_to 'Ver Reserva', reservation %></td>
+        <td><%= link_to 'Editar', edit_reservation_path(reservation) %></td>
+        <td><%= link_to 'Borrar', reservation, method: :delete, data: { confirm: 'esta seguro?' } %></td>
+        <td><a href="/liberar/<%= reservation.id %>">Liberar</a></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nueva Reserva', new_reservation_path %>
+</div>
+<script>
+
+$(function() {
+    $( "#datepicker" ).datepicker({
+        
+        dateFormat: 'yy-mm-dd',
+        
+    });;
+  });
+
+</script>

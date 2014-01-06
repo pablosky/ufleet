@@ -1,0 +1,58 @@
+<%= form_for @driver, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <div class="control-group">
+    <%= f.label :cargo, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :cargo, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :ci, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :ci, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :nombre, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :nombre, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :apellidopaterno, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :apellidopaterno, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :apellidomaterno, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :apellidomaterno, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :celular, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :celular, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :estadochofer, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :estadochofer, :class => 'text_field' %>
+    </div>
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                drivers_path, :class => 'btn' %>
+  </div>
+<% end %>

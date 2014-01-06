@@ -1,0 +1,43 @@
+<h1>Listing vehicles</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Patente</th>
+      <th>Marca</th>
+      <th>Modelovehiculo</th>
+      <th>Aniovehiculo</th>
+      <th>Color</th>
+      <th>Nrchasis</th>
+      <th>Garantia</th>
+      <th>Descripcion</th>
+      <th>Estado</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vehicles.each do |vehicle| %>
+      <tr>
+        <td><%= vehicle.patente %></td>
+        <td><%= vehicle.marca %></td>
+        <td><%= vehicle.modelovehiculo %></td>
+        <td><%= vehicle.aniovehiculo %></td>
+        <td><%= vehicle.color %></td>
+        <td><%= vehicle.nrchasis %></td>
+        <td><%= vehicle.garantia %></td>
+        <td><%= vehicle.descripcion %></td>
+        <td><%= vehicle.estado %></td>
+        <td><%= link_to 'Show', vehicle %></td>
+        <td><%= link_to 'Edit', edit_vehicle_path(vehicle) %></td>
+        <td><%= link_to 'Destroy', vehicle, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vehicle', new_vehicle_path %>
