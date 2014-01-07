@@ -927,11 +927,17 @@ $(".storedriver").click(function() {
 $(".storedate").click(function() {
 
       
-      document.getElementById("reservation_inicio_1i").value = $(this).attr("anio");
+       document.getElementById("reservation_inicio_1i").value = $(this).attr("anio");
       document.getElementById("reservation_inicio_2i").value = $(this).attr("mes");
       document.getElementById("reservation_inicio_3i").value = $(this).attr("dia");
       document.getElementById("reservation_inicio_4i").value = $(this).attr("hora");
       document.getElementById("reservation_inicio_5i").value = $(this).attr("minuto");
+
+      document.getElementById("reservation_fin_1i").value = $(this).attr("anio");
+      document.getElementById("reservation_fin_2i").value = $(this).attr("mes");
+      document.getElementById("reservation_fin_3i").value = $(this).attr("dia");
+      document.getElementById("reservation_fin_4i").value = $(this).attr("hora");
+      document.getElementById("reservation_fin_5i").value = $(this).attr("minuto");
    });
 
 
