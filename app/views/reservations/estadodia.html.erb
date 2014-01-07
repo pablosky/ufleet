@@ -36,7 +36,7 @@
       <tr>
 
         <td><%= reservation.driver.nombre %>  <%= reservation.driver.apellidopaterno %></td>
-        <td><%= reservation.vehicle.id %></td>
+        <td><%= reservation.vehicle.patente %> <%= reservation.vehicle.modelovehiculo %></td>
         <td><%= reservation.inicio.strftime("%D") %></td>
         <td>  <%= reservation.inicio.strftime("%R") %></td>
         <td><%= reservation.fin.strftime("%D") %>  </td>
