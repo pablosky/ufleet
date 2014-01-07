@@ -33,7 +33,7 @@
 
                 <% for ind in 0..15 %>  
                 
-                   <a href="#ModalConsulta2lunes<%= ind %>" data-toggle="modal" class="storedate" id="<%= @lunes[ind].strftime("%Y%B%d%H%M") %>" name="<%= @lunes[ind]%>">Consultar</a><br>
+                   <a href="#ModalConsulta2lunes<%= ind %>" data-toggle="modal" class="storedate" anio="<%= @lunes[ind].strftime("%Y") %>" mes="<%= @lunes[ind].strftime("%-m") %>"  dia="<%= @lunes[ind].strftime("%-d") %>"  hora="<%= @lunes[ind].strftime("%H") %>" minuto="<%= @lunes[ind].strftime("%M") %>">Consultar</a><br>
 
                   <div id="ModalConsulta2lunes<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-header">
@@ -136,7 +136,7 @@
             <div class="span1">Martes
             <br><br> <% for ind in 0..15 %>  
                 
-                   <a href="#ModalConsulta2martes<%= ind %>" data-toggle="modal">Consultar</a><br>
+                   <a href="#ModalConsulta2martes<%= ind %>" data-toggle="modal" class="storedate" anio="<%= @martes[ind].strftime("%Y") %>" mes="<%= @martes[ind].strftime("%-m") %>"  dia="<%= @martes[ind].strftime("%-d") %>"  hora="<%= @martes[ind].strftime("%H") %>" minuto="<%= @martes[ind].strftime("%M") %>">Consultar</a><br>
 
                   <div id="ModalConsulta2martes<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-header">
@@ -236,7 +236,8 @@
                 <br><br>
                  <% for ind in 0..15 %>  
                 
-                   <a href="#ModalConsulta2miercoles<%= ind %>" data-toggle="modal">Consultar</a><br>
+                  <a href="#ModalConsulta2miercoles<%= ind %>" data-toggle="modal" class="storedate" anio="<%= @miercoles[ind].strftime("%Y") %>" mes="<%= @miercoles[ind].strftime("%-m") %>"  dia="<%= @miercoles[ind].strftime("%-d") %>"  hora="<%= @miercoles[ind].strftime("%H") %>" minuto="<%= @miercoles[ind].strftime("%M") %>">Consultar</a><br>
+
 
                   <div id="ModalConsulta2miercoles<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-header">
@@ -336,7 +337,8 @@
             <br><br>
                  <% for ind in 0..15 %>  
                 
-                   <a href="#ModalConsulta2jueves<%= ind %>" data-toggle="modal">Consultar</a><br>
+                  <a href="#ModalConsulta2jueves<%= ind %>" data-toggle="modal" class="storedate" anio="<%= @jueves[ind].strftime("%Y") %>" mes="<%= @jueves[ind].strftime("%-m") %>"  dia="<%= @jueves[ind].strftime("%-d") %>"  hora="<%= @jueves[ind].strftime("%H") %>" minuto="<%= @jueves[ind].strftime("%M") %>">Consultar</a><br>
+
 
                   <div id="ModalConsulta2jueves<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-header">
@@ -435,7 +437,8 @@
                
                  <% for ind in 0..15 %>  
                 
-                   <a href="#ModalConsulta2viernes<%= ind %>" data-toggle="modal">Consultar</a><br>
+                   <a href="#ModalConsulta2viernes<%= ind %>" data-toggle="modal" class="storedate" anio="<%= @viernes[ind].strftime("%Y") %>" mes="<%= @viernes[ind].strftime("%-m") %>"  dia="<%= @viernes[ind].strftime("%-d") %>"  hora="<%= @viernes[ind].strftime("%H") %>" minuto="<%= @viernes[ind].strftime("%M") %>">Consultar</a><br>
+
 
                   <div id="ModalConsulta2viernes<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-header">
@@ -534,7 +537,8 @@
             <br><br>
                <% for ind in 0..15 %>  
                 
-                   <a href="#ModalConsulta2sabado<%= ind %>" data-toggle="modal">Consultar</a><br>
+                   <a href="#ModalConsulta2sabado<%= ind %>" data-toggle="modal" class="storedate" anio="<%= @sabado[ind].strftime("%Y") %>" mes="<%= @sabado[ind].strftime("%-m") %>"  dia="<%= @sabado[ind].strftime("%-d") %>"  hora="<%= @sabado[ind].strftime("%H") %>" minuto="<%= @sabado[ind].strftime("%M") %>">Consultar</a><br>
+
 
                   <div id="ModalConsulta2sabado<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-header">
@@ -631,7 +635,7 @@
             <br><br>
                 <% for ind in 0..15 %>  
                 
-                   <a href="#ModalConsulta2domingo<%= ind %>" data-toggle="modal">Consultar</a><br>
+                    <a href="#ModalConsulta2domingo<%= ind %>" data-toggle="modal" class="storedate" anio="<%= @domingo[ind].strftime("%Y") %>" mes="<%= @domingo[ind].strftime("%-m") %>"  dia="<%= @domingo[ind].strftime("%-d") %>"  hora="<%= @domingo[ind].strftime("%H") %>" minuto="<%= @domingo[ind].strftime("%M") %>">Consultar</a><br>
 
                   <div id="ModalConsulta2domingo<%= ind %>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-header">
@@ -851,15 +855,17 @@
                                   <%= f.label "Vehiculo" %> <input type="text"  id = 'vehiculo2' disabled></input> 
                                   <div id="vehiculoprint"></div>
                                   <div class="controls">
-                                    <%= f.text_field :vehicle_id, :class => 'text_field' ,:id=> 'vehiculo' ,:type=>"hidden" %>
+                                    <%= f.text_field :vehicle_id, :class => 'text_field' ,:id=> 'vehiculo' ,:type=>"hidden"  %>
                                   </div>
                                 </div>
 
                                 <div class="control-group">
                                   <%= f.label :inicio, :class => 'control-label' %>
-                                  <input type="text"  id = 'fechaf2' disabled ></input> 
+                                  
                                   <div class="controls">
-                                    <%= f.datetime_select :inicio, :class => 'text_field' , :id=>'fechaf' %>
+                                    
+                                    <%= f.datetime_select :inicio, :class => 'text_field' , :id=>'fechaf'    %>
+                                    
                                   </div>
                                 </div>
 
@@ -920,10 +926,12 @@ $(".storedriver").click(function() {
 
 $(".storedate").click(function() {
 
-      document.getElementById("fechaf").value = $(this).attr("id");
-      document.getElementById("fechaf2").value = $(this).attr("name");
-     
-     
+      
+      document.getElementById("reservation_inicio_1i").value = $(this).attr("anio");
+      document.getElementById("reservation_inicio_2i").value = $(this).attr("mes");
+      document.getElementById("reservation_inicio_3i").value = $(this).attr("dia");
+      document.getElementById("reservation_inicio_4i").value = $(this).attr("hora");
+      document.getElementById("reservation_inicio_5i").value = $(this).attr("minuto");
    });
 
 
